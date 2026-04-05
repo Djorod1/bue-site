@@ -1,18 +1,26 @@
-// Updated bue.js
+// Updated router function to handle navigation properly
 
-// Ensure proper event delegation for all navigation links.
-document.addEventListener('DOMContentLoaded', function () {
-    const navLinks = document.querySelectorAll('.nav-link');
+function router() {
+    // Prevent default action for nav-brand link
+    const navBrandLink = document.querySelector('.nav-brand');
+    navBrandLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        // Add your navigation logic here
+    });
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault(); // Fixing navigation by preventing default link behavior
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
+    // Ensure all data-page links trigger the router function correctly
+    const dataPageLinks = document.querySelectorAll('[data-page]');
+    dataPageLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            // Call your routing logic here
         });
     });
-});
+
+    // Initialization code to attach event listeners to all navigation elements
+    const logoButton = document.querySelector('.bue-logo');
+    logoButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        // Logic to handle logo click
+    });
+}
